@@ -6,8 +6,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Fraunces', serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, */
+    /* Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
 
 a {
@@ -17,6 +18,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1 {
+  font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 300;
+  font-size: 6rem;
+  letter-spacing: -0.1rem;
 }
 
 @media (prefers-color-scheme: dark) {
