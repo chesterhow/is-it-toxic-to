@@ -20,16 +20,12 @@ export default function Home({ plantsMap }: HomePageProps) {
     setActivePlant(plantsMap[value]);
   }, [plantsMap, value]);
 
-  useEffect(() => {
-    console.log(activePlant);
-  }, [activePlant]);
-
   return (
-    <div className="grid grid-cols-2 gap-4 p-4">
-      <div className="flex flex-col items-stretch m-auto w-full">
-        <h1 className="text-center">🪴 Is It Toxic To?</h1>
+    <div className="flex flex-col gap-y-4 p-4">
+      <div className="bg-neutral-50 rounded-2xl p-10">
+        <div className="flex flex-col gap-y-4 max-w-screen-md m-auto">
+          <h1 className="text-center">🪴 Is It Toxic To?</h1>
 
-        <div className="bg-neutral-50 rounded-2xl p-10">
           <Command
             label="Hello"
             className="flex flex-col items-stretch bg-white rounded-xl overflow-hidden shadow-2xl border-[1px] border-neutral-100"
@@ -42,7 +38,7 @@ export default function Home({ plantsMap }: HomePageProps) {
               placeholder="Search for toxic plants..."
               autoFocus
             />
-            <Command.List className="p-2 overflow-y-auto h-[400px]">
+            <Command.List className="p-2 overflow-y-auto h-[50vh]">
               {plants.map((plant) => (
                 <Command.Item
                   key={plant.name}
@@ -60,9 +56,10 @@ export default function Home({ plantsMap }: HomePageProps) {
           </Command>
         </div>
       </div>
+
       <div className="bg-neutral-50 rounded-2xl p-10">
         <h2>{activePlant.name}</h2>
-        {activePlant.scientificName}
+        <h3>{activePlant.scientificName}</h3>
       </div>
     </div>
   );
