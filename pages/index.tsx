@@ -1,52 +1,69 @@
 import { Command } from "cmdk";
-import { useEffect, useRef } from "react";
+import keyBy from "lodash/keyBy";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type HomePageProps = {
-  plants: Plant[];
+  plantsMap: Record<string, Plant>;
 };
 
-export default function Home({ plants }: HomePageProps) {
+export default function Home({ plantsMap }: HomePageProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const plants = useMemo(() => Object.values(plantsMap), [plantsMap]);
+  const [value, setValue] = useState(Object.keys(plantsMap)[0]);
+  const [activePlant, setActivePlant] = useState<Plant>(plantsMap[value]);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
-  return (
-    <div className="flex flex-col items-stretch pt-20 pb-4 max-w-3xl m-auto">
-      <h1 className="text-center">🪴 Is It Toxic To?</h1>
+  useEffect(() => {
+    setActivePlant(plantsMap[value]);
+  }, [plantsMap, value]);
 
-      <Command label="Hello" className="px-8 flex flex-col items-stretch">
-        <Command.Input
-          ref={inputRef}
-          className="p-4 shadow-2xl text-2xl bg-white rounded-lg border-[1px] border-gray-200/60 font-light focus:outline-none"
-          placeholder="Search for toxic plants..."
-          autoFocus
-        />
-        <Command.List className="bg-white rounded-lg mt-4 p-2 shadow-2xl border-[1px] border-gray-200/60 overflow-y-auto h-[400px]">
-          {plants.map((plant) => (
-            <Command.Item
-              key={plant.name}
-              className="group px-4 py-2 aria-selected:bg-gray-100 rounded-md"
-            >
-              <span>{plant.name}</span>
-              <span className="pl-3 text-gray-400">{plant.scientificName}</span>
-              {/* {plant.imageUrl !== null && (
-                <div className="fixed inset-0 hidden group-aria-selected:block pointer-events-none opacity-10">
-                  <Image
-                    src={plant.imageUrl}
-                    alt=""
-                    layout="responsive"
-                    width="200"
-                    height="200"
-                    loading="lazy"
-                  />
-                </div>
-              )} */}
-            </Command.Item>
-          ))}
-        </Command.List>
-      </Command>
+  useEffect(() => {
+    console.log(activePlant);
+  }, [activePlant]);
+
+  return (
+    <div className="grid grid-cols-2 gap-4 p-4">
+      <div className="flex flex-col items-stretch m-auto w-full">
+        <h1 className="text-center">🪴 Is It Toxic To?</h1>
+
+        <div className="bg-neutral-50 rounded-2xl p-10">
+          <Command
+            label="Hello"
+            className="flex flex-col items-stretch bg-white rounded-xl overflow-hidden shadow-2xl border-[1px] border-neutral-100"
+            value={value}
+            onValueChange={setValue}
+          >
+            <Command.Input
+              ref={inputRef}
+              className="p-4 text-2xl font-light focus:outline-none border-b-[1px] border-neutral-100"
+              placeholder="Search for toxic plants..."
+              autoFocus
+            />
+            <Command.List className="p-2 overflow-y-auto h-[400px]">
+              {plants.map((plant) => (
+                <Command.Item
+                  key={plant.name}
+                  value={[plant.name, plant.scientificName].join(" ")}
+                  className="group px-4 py-2 aria-selected:bg-gray-100 rounded-md"
+                  onSelect={(value) => console.log(plant, value)}
+                >
+                  <span>{plant.name}</span>&nbsp;
+                  <span className="pl-2 text-gray-400">
+                    {plant.scientificName}
+                  </span>
+                </Command.Item>
+              ))}
+            </Command.List>
+          </Command>
+        </div>
+      </div>
+      <div className="bg-neutral-50 rounded-2xl p-10">
+        <h2>{activePlant.name}</h2>
+        {activePlant.scientificName}
+      </div>
     </div>
   );
 }
@@ -56,9 +73,12 @@ export async function getStaticProps() {
     "https://fourthclasshonours.github.io/toxic-plant-list-scraper/toxicPlants.json"
   );
   const plants = await res.json();
+  const plantsMap = keyBy(plants, (plant: Plant) =>
+    [plant.name, plant.scientificName].join(" ").toLowerCase()
+  );
 
   return {
-    props: { plants },
+    props: { plantsMap },
     revalidate: 86400, // Revalidate once a day
   };
 }

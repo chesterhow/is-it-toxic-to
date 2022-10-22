@@ -8,7 +8,6 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  @apply bg-gray-100;
 }
 
 a {
@@ -33,12 +32,7 @@ h1 {
   letter-spacing: -0.1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+[cmdk-list] {
+  scroll-padding-block-start: 8px;
+  scroll-padding-block-end: 8px;
 }
