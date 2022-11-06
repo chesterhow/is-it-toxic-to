@@ -26,7 +26,7 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
       label="Hello"
       className={`flex flex-col items-stretch bg-white rounded-xl overflow-hidden border-[1px] border-neutral-100 ${
         deemphasise ? "shadow-md" : "shadow-2xl"
-      }`}
+      } transition-shadow duration-500`}
     >
       <Command.Input
         ref={inputRef}

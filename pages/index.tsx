@@ -2,6 +2,7 @@ import keyBy from "lodash/keyBy";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 import { CommandBar } from "../components/CommandBar";
 import { DetailSection } from "../components/DetailSection";
@@ -56,9 +57,18 @@ export default function Home({ plantsMap }: HomePageProps) {
         <CommandBar plants={plants} deemphasise={activePlant !== null} />
       </div>
 
-      {activePlant !== null && (
-        <DetailSection activePlant={activePlant} ref={detailRef} />
-      )}
+      <CSSTransition
+        in={activePlant !== null}
+        timeout={1000}
+        classNames="fade"
+        unmountOnExit
+      >
+        {activePlant !== null ? (
+          <DetailSection activePlant={activePlant} ref={detailRef} />
+        ) : (
+          <></>
+        )}
+      </CSSTransition>
     </div>
   );
 }
