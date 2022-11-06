@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 
 type CommandBarProps = {
   plants: Plant[];
+  deemphasise?: boolean;
 };
 
-export function CommandBar({ plants }: CommandBarProps) {
+export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -23,7 +24,9 @@ export function CommandBar({ plants }: CommandBarProps) {
   return (
     <Command
       label="Hello"
-      className="flex flex-col items-stretch bg-white rounded-xl overflow-hidden shadow-2xl border-[1px] border-neutral-100"
+      className={`flex flex-col items-stretch bg-white rounded-xl overflow-hidden border-[1px] border-neutral-100 ${
+        deemphasise ? "shadow-md" : "shadow-2xl"
+      }`}
     >
       <Command.Input
         ref={inputRef}
@@ -31,7 +34,7 @@ export function CommandBar({ plants }: CommandBarProps) {
         placeholder="Search for toxic plants..."
         autoFocus
       />
-      <Command.List className="p-2 overflow-y-auto h-[50vh]">
+      <Command.List className="p-2 overflow-y-auto h-[50vh] max-h-96">
         {plants.map((plant) => (
           <Command.Item
             key={plant.name}
