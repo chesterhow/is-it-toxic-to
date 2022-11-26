@@ -3,12 +3,14 @@ import { motion } from "framer-motion";
 import React from "react";
 
 import { ANIMAL_EMOJI_MAP } from "../constants";
+import { useKeyboardShortcuts } from "../utils/useKeyboardShortcuts";
 import { DetailLabel } from "./DetailLabel";
 import { DetailTagList } from "./DetailTagList";
 import { DetailTagListItem } from "./DetailTagListItem";
 
 type DetailSectionProps = {
   activePlant: Plant;
+  clearActivePlant: () => void;
 };
 
 export const DetailSection = React.forwardRef(_DetailSection);
@@ -17,7 +19,11 @@ function _DetailSection(
   props: DetailSectionProps,
   ref: React.Ref<HTMLElement>
 ) {
-  const { activePlant } = props;
+  const { activePlant, clearActivePlant } = props;
+
+  useKeyboardShortcuts("Escape", () => {
+    clearActivePlant();
+  });
 
   return (
     <motion.section
@@ -34,6 +40,23 @@ function _DetailSection(
         "xl:w-1/2 xl:overflow-y-auto xl:max-h-full"
       )}
     >
+      <div className="flex justify-between">
+        <input
+          type="button"
+          value="←"
+          onClick={clearActivePlant}
+          className="bg-neutral-200 h-6 w-6 rounded-lg hover:bg-neutral-300 transition-colors"
+        />
+
+        <a
+          href={activePlant.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline underline-offset-2 text-neutral-500"
+        >
+          ASPCA Website ↗
+        </a>
+      </div>
       <h2>{activePlant.name}</h2>
       <h3 className="text-2xl italic pb-8 md:pb-10 text-neutral-500 font-light">
         {activePlant.scientificName}

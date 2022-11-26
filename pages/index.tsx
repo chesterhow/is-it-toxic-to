@@ -78,7 +78,11 @@ export default function Home({ plantsMap }: HomePageProps) {
 
       <AnimatePresence>
         {activePlant !== null && (
-          <DetailSection activePlant={activePlant} ref={detailRef} />
+          <DetailSection
+            ref={detailRef}
+            activePlant={activePlant}
+            clearActivePlant={() => setActivePlant(null)}
+          />
         )}
       </AnimatePresence>
     </motion.div>
