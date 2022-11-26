@@ -3,6 +3,8 @@ import { Command } from "cmdk";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 
+import { ANIMAL_EMOJI_MAP } from "../constants";
+
 type CommandBarProps = {
   plants: Plant[];
   deemphasise?: boolean;
@@ -44,11 +46,16 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
           <Command.Item
             key={plant.name}
             value={[plant.name, plant.scientificName].join(" ")}
-            className="group px-4 py-2 aria-selected:bg-gray-100 rounded-md"
+            className="group px-4 py-2 aria-selected:bg-gray-100 rounded-md flex"
             onSelect={handleSelect}
           >
             <span>{plant.name}</span>&nbsp;
-            <span className="pl-2 text-gray-400">{plant.scientificName}</span>
+            <span className="pl-2 text-gray-400 grow">
+              {plant.scientificName}
+            </span>
+            <span className="bg-red-200 rounded-full px-1">
+              {plant.toxicTo.map((animal) => ANIMAL_EMOJI_MAP[animal])}
+            </span>
           </Command.Item>
         ))}
       </Command.List>

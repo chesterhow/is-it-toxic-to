@@ -2,15 +2,10 @@ import classNames from "classnames";
 import { motion } from "framer-motion";
 import React from "react";
 
+import { ANIMAL_EMOJI_MAP } from "../constants";
 import { DetailLabel } from "./DetailLabel";
 import { DetailTagList } from "./DetailTagList";
 import { DetailTagListItem } from "./DetailTagListItem";
-
-const ANIMAL_EMOJI_MAP: Record<Animal, string> = {
-  cat: "🐱",
-  dog: "🐶",
-  horse: "🐴",
-};
 
 type DetailSectionProps = {
   activePlant: Plant;
