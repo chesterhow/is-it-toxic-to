@@ -52,18 +52,3 @@ h2 {
   scroll-padding-block-start: 8px;
   scroll-padding-block-end: 8px;
 }
-
-.fade-enter {
-  opacity: 0;
-}
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms;
-}
-.fade-exit {
-  opacity: 1;
-}
-.fade-exit-active {
-  opacity: 0;
-  transition: opacity 1000ms;
-}

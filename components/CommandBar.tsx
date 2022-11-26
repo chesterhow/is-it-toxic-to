@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { Command } from "cmdk";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
@@ -24,9 +25,13 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
   return (
     <Command
       label="Hello"
-      className={`flex flex-col items-stretch bg-white rounded-xl overflow-hidden border-[1px] border-neutral-100 ${
+      className={classNames(
+        "flex flex-col items-stretch",
+        "bg-white rounded-xl  border-[1px] border-neutral-100",
+        "overflow-hidden z-20",
+        "transition-shadow duration-500",
         deemphasise ? "shadow-md" : "shadow-2xl"
-      } transition-shadow duration-500`}
+      )}
     >
       <Command.Input
         ref={inputRef}

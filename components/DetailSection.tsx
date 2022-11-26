@@ -1,3 +1,5 @@
+import classNames from "classnames";
+import { motion } from "framer-motion";
 import React from "react";
 
 import { DetailLabel } from "./DetailLabel";
@@ -23,16 +25,26 @@ function _DetailSection(
   const { activePlant } = props;
 
   return (
-    <section
+    <motion.section
       ref={ref}
-      className="bg-white rounded-2xl p-10 shadow-2xl w-full max-w-screen-lg xl:w-1/2 xl:overflow-y-auto xl:max-h-full"
+      key="detail"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={classNames(
+        "bg-white rounded-2xl shadow-2xl p-10",
+        // Layout
+        "w-full max-w-screen-md",
+        // Layout: desktop
+        "xl:w-1/2 xl:overflow-y-auto xl:max-h-full"
+      )}
     >
       <h2>{activePlant.name}</h2>
       <h3 className="text-2xl italic pb-8 md:pb-10 text-neutral-500 font-light">
         {activePlant.scientificName}
       </h3>
 
-      <div className="flex flex-col md:grid m md:grid-cols-[10rem,1fr] md:gap-3">
+      <div className="flex flex-col md:grid md:grid-cols-[10rem,1fr] md:gap-3">
         {activePlant.family !== null && (
           <DetailLabel title="Family" text={activePlant.family} />
         )}
@@ -52,6 +64,7 @@ function _DetailSection(
               } ${animal[0].toUpperCase()}${animal
                 .substring(1)
                 .toLowerCase()}s`}
+              intent="danger"
             />
           ))}
         </DetailTagList>
@@ -68,6 +81,6 @@ function _DetailSection(
           />
         )}
       </div>
-    </section>
+    </motion.section>
   );
 }
