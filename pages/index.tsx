@@ -65,12 +65,14 @@ export default function Home({ plantsMap }: HomePageProps) {
         )}
       >
         <div className="min-w-fit flex flex-col gap-y-4 m-auto">
+          {/* HACK: having a empty element here prevents the emoji from being cut-off on Chrome. */}
+          <span />
           <Link href="/">
             <motion.h1
               transition={{ duration: 0.5 }}
               initial={{ y: 100 }}
               animate={{ y: 0 }}
-              className="text-center cursor-pointer z-10"
+              className="text-center cursor-pointer z-10 select-none overflow-visible"
             >
               🪴 Is It Toxic To?
             </motion.h1>

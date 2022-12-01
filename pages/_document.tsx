@@ -5,9 +5,17 @@ export default function Document() {
     <Html>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,soft,wght@0,9..144,0..100,100;0,9..144,0..100,200;0,9..144,0..100,300;0,9..144,0..100,400;0,9..144,0..100,500;0,9..144,0..100,600;0,9..144,0..100,700;0,9..144,0..100,800;0,9..144,0..100,900;1,9..144,0..100,100;1,9..144,0..100,200;1,9..144,0..100,300;1,9..144,0..100,400;1,9..144,0..100,500;1,9..144,0..100,600;1,9..144,0..100,700;1,9..144,0..100,800;1,9..144,0..100,900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300,0..100&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        {/* <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,soft,wght@0,144,0..100,300&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        ></link> */}
       </Head>
       <body>
         <Main />

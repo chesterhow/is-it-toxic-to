@@ -49,8 +49,8 @@ function _DetailSection(
       </div>
 
       {/* Header */}
-      <h2>{activePlant.name}</h2>
-      <h3 className="text-2xl italic pb-8 md:pb-10 text-neutral-500 font-light">
+      <h2 className="mt-4 mb-2">{activePlant.name}</h2>
+      <h3 className="text-2xl italic pb-8 md:pb-10 text-neutral-500 font-light tracking-tight">
         {activePlant.scientificName}
       </h3>
 
