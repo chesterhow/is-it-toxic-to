@@ -42,15 +42,19 @@ function _DetailSection(
         "xl:w-1/2 xl:overflow-y-auto xl:max-h-full"
       )}
     >
+      {/* Navigation */}
       <div className="flex justify-between">
         <Button onClick={clearActivePlant}>←</Button>
         <ExternalLink href={activePlant.link}>ASPCA Website</ExternalLink>
       </div>
+
+      {/* Header */}
       <h2>{activePlant.name}</h2>
       <h3 className="text-2xl italic pb-8 md:pb-10 text-neutral-500 font-light">
         {activePlant.scientificName}
       </h3>
 
+      {/* Details */}
       <div className="flex flex-col md:grid md:grid-cols-[10rem,1fr] md:gap-3">
         {activePlant.family !== null && (
           <DetailLabel title="Family" text={activePlant.family} />

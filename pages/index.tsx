@@ -7,6 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { CommandBar } from "../components/CommandBar";
 import { DetailSection } from "../components/Detail";
+import { ExternalLink } from "../components/ExternalLink";
 
 type HomePageProps = {
   plantsMap: Record<string, Plant>;
@@ -50,42 +51,63 @@ export default function Home({ plantsMap }: HomePageProps) {
   }, [activePlant]);
 
   return (
-    <motion.div
-      transition={{ duration: 0.5 }}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className={classNames(
-        "flex gap-10 p-10 w-full justify-center items-center max-w-screen-2xl m-auto",
-        // Layout
-        "flex-col h-auto",
-        // Layout: desktop
-        "xl:flex-row xl:h-screen"
-      )}
-    >
-      <div className="min-w-fit flex flex-col gap-y-4 m-auto">
-        <Link href="/">
-          <motion.h1
-            transition={{ duration: 0.5 }}
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            className="text-center cursor-pointer z-10"
-          >
-            🪴 Is It Toxic To?
-          </motion.h1>
-        </Link>
-        <CommandBar plants={plants} deemphasise={activePlant !== null} />
-      </div>
-
-      <AnimatePresence>
-        {activePlant !== null && (
-          <DetailSection
-            ref={detailRef}
-            activePlant={activePlant}
-            clearActivePlant={() => setActivePlant(null)}
-          />
+    <div className="h-auto xl:h-screen flex flex-col items-center p-10 w-full gap-20">
+      <motion.div
+        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className={classNames(
+          "grow flex gap-10  justify-center items-center max-w-screen-2xl",
+          // Layout
+          "flex-col",
+          // Layout: desktop
+          "xl:flex-row"
         )}
-      </AnimatePresence>
-    </motion.div>
+      >
+        <div className="min-w-fit flex flex-col gap-y-4 m-auto">
+          <Link href="/">
+            <motion.h1
+              transition={{ duration: 0.5 }}
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+              className="text-center cursor-pointer z-10"
+            >
+              🪴 Is It Toxic To?
+            </motion.h1>
+          </Link>
+          <CommandBar plants={plants} deemphasise={activePlant !== null} />
+        </div>
+
+        <AnimatePresence>
+          {activePlant !== null && (
+            <DetailSection
+              ref={detailRef}
+              activePlant={activePlant}
+              clearActivePlant={() => setActivePlant(null)}
+            />
+          )}
+        </AnimatePresence>
+      </motion.div>
+
+      <motion.div
+        transition={{ delay: 0.5, duration: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex gap-6 text-md text-neutral-400 select-none"
+      >
+        <span>
+          Planted 🌱 by{" "}
+          <ExternalLink href="https://chester.how">Chester</ExternalLink>
+        </span>
+        <span>•</span>
+        <span>
+          Try it on{" "}
+          <ExternalLink href="https://www.raycast.com/chesterhow/is-it-toxic-to">
+            Raycast
+          </ExternalLink>
+        </span>
+      </motion.div>
+    </div>
   );
 }
 

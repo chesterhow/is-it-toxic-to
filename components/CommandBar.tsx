@@ -28,10 +28,12 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
     <Command
       className={classNames(
         "flex flex-col items-stretch",
-        "bg-white rounded-xl  border-[1px] border-neutral-100",
+        "bg-white rounded-xl border-[1px] border-neutral-100",
         "overflow-hidden z-20",
-        "transition-shadow duration-500",
-        deemphasise ? "shadow-md" : "shadow-2xl"
+        "transition-[box-shadow,border] duration-500",
+        deemphasise ? "shadow-md" : "shadow-2xl",
+        // State: focus
+        "focus-within:border-neutral-300"
       )}
     >
       <Command.Input
