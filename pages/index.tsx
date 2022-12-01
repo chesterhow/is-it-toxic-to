@@ -69,7 +69,7 @@ export default function Home({ plantsMap }: HomePageProps) {
             "xl:flex-row"
           )}
         >
-          <div className="min-w-fit flex flex-col gap-y-4 m-auto items-center">
+          <div className="min-w-fit flex flex-col gap-y-4 m-auto">
             {/* HACK: having a empty element here prevents the emoji from being cut-off on Chrome. */}
             <span />
             <Link href="/">
