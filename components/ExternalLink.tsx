@@ -16,7 +16,7 @@ export function ExternalLink(props: ExternalLinkProps) {
         // State: hover
         "hover:text-black",
         // State: focus
-        "focus:outline-none focus:ring-4 focus:ring-blue-400/50"
+        "focus-visible:ring-4 focus-visible:ring-blue-400/50"
       )}
     >
       {props.children}

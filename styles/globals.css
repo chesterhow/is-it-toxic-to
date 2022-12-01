@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  box-sizing: border-box;
+  @apply box-border focus:outline-none;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
 }

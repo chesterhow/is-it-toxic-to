@@ -14,7 +14,7 @@ export function Button(props: ButtonProps) {
         // State: hover
         "hover:bg-neutral-300",
         // State: focus
-        "focus:outline-none focus:ring-4 focus:ring-blue-400/50"
+        "focus-visible:ring-4 focus-visible:ring-blue-400/50"
       )}
     >
       {props.children}
