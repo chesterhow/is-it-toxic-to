@@ -25,6 +25,11 @@ module.exports = {
       ],
       serif: ["Fraunces", "serif"],
     },
+    extend: {
+      screens: {
+        xs: "425px",
+      },
+    },
   },
   plugins: [
     plugin(function ({ addVariant }) {

@@ -22,9 +22,9 @@ body > #__next {
 }
 
 h1 {
-  @apply font-serif;
+  @apply font-serif leading-snug;
   font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 300;
-  font-size: 6rem;
+  /* font-size: 6rem; */
   letter-spacing: -0.1rem;
 }
 

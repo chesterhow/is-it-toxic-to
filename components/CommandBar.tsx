@@ -50,11 +50,11 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
             className="group px-4 py-2 aria-selected:bg-neutral-100 rounded-md flex cursor-pointer"
             onSelect={handleSelect}
           >
-            <span>{plant.name}</span>&nbsp;
-            <span className="pl-2 text-neutral-400 grow">
+            <span className="grow sm:grow-0">{plant.name}</span>&nbsp;
+            <span className="pl-2 text-neutral-400 grow hidden sm:block">
               {plant.scientificName}
             </span>
-            <span className="bg-red-200 rounded-full px-1">
+            <span className="bg-red-200 rounded-full px-1 hidden xs:block">
               {plant.toxicTo.map((animal) => ANIMAL_EMOJI_MAP[animal])}
             </span>
           </Command.Item>
