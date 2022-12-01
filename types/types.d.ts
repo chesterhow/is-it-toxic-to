@@ -1,4 +1,4 @@
-type Animal = 'cat' | 'dog' | 'horse';
+type Animal = "cat" | "dog" | "horse";
 
 type Plant = {
   name: string;
