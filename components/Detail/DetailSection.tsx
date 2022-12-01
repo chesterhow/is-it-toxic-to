@@ -2,8 +2,10 @@ import classNames from "classnames";
 import { motion } from "framer-motion";
 import React from "react";
 
-import { ANIMAL_EMOJI_MAP } from "../constants";
-import { useKeyboardShortcuts } from "../utils/useKeyboardShortcuts";
+import { ANIMAL_EMOJI_MAP } from "../../constants";
+import { useKeyboardShortcuts } from "../../utils/useKeyboardShortcuts";
+import { Button } from "../Button";
+import { ExternalLink } from "../ExternalLink";
 import { DetailLabel } from "./DetailLabel";
 import { DetailTagList } from "./DetailTagList";
 import { DetailTagListItem } from "./DetailTagListItem";
@@ -27,11 +29,11 @@ function _DetailSection(
 
   return (
     <motion.section
-      ref={ref}
-      key="detail"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      ref={ref}
+      key="detail"
       className={classNames(
         "bg-white rounded-2xl shadow-2xl p-10",
         // Layout
@@ -41,21 +43,8 @@ function _DetailSection(
       )}
     >
       <div className="flex justify-between">
-        <input
-          type="button"
-          value="←"
-          onClick={clearActivePlant}
-          className="bg-neutral-200 h-6 w-6 rounded-lg hover:bg-neutral-300 transition-colors"
-        />
-
-        <a
-          href={activePlant.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline underline-offset-2 text-neutral-500"
-        >
-          ASPCA Website ↗
-        </a>
+        <Button onClick={clearActivePlant}>←</Button>
+        <ExternalLink href={activePlant.link}>ASPCA Website</ExternalLink>
       </div>
       <h2>{activePlant.name}</h2>
       <h3 className="text-2xl italic pb-8 md:pb-10 text-neutral-500 font-light">

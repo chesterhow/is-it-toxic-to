@@ -13,7 +13,7 @@ export function DetailTagListItem({
   return (
     <span
       className={classNames(
-        "bg-neutral-200 px-2 rounded",
+        "px-2 rounded",
         intent === "danger"
           ? "bg-red-200 text-red-900"
           : "bg-neutral-200 text-neutral-900"

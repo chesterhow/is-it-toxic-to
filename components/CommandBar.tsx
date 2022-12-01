@@ -26,7 +26,6 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
 
   return (
     <Command
-      label="Hello"
       className={classNames(
         "flex flex-col items-stretch",
         "bg-white rounded-xl  border-[1px] border-neutral-100",

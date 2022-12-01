@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { CommandBar } from "../components/CommandBar";
-import { DetailSection } from "../components/DetailSection";
+import { DetailSection } from "../components/Detail";
 
 type HomePageProps = {
   plantsMap: Record<string, Plant>;
@@ -51,6 +51,9 @@ export default function Home({ plantsMap }: HomePageProps) {
 
   return (
     <motion.div
+      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
       className={classNames(
         "flex gap-10 p-10 w-full justify-center items-center max-w-screen-2xl m-auto",
         // Layout
@@ -58,9 +61,6 @@ export default function Home({ plantsMap }: HomePageProps) {
         // Layout: desktop
         "xl:flex-row xl:h-screen"
       )}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
     >
       <div className="min-w-fit flex flex-col gap-y-4 m-auto">
         <Link href="/">
