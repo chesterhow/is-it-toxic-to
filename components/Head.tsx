@@ -31,6 +31,11 @@ export function Head({
         content={description}
         key="og:description"
       />
+      <meta
+        property="og:image"
+        content="https://iitt.vercel.app/og.png"
+        key="og:image"
+      />
       <meta property="og:type" content="website" key="og:type" />
       <meta
         property="og:site_name"
@@ -57,6 +62,11 @@ export function Head({
         name="twitter:description"
         content={description}
         key="twitter:description"
+      />
+      <meta
+        name="twitter:image"
+        content="https://iitt.vercel.app/og.png"
+        key="twitter:image"
       />
       <meta
         name="twitter:creator"
