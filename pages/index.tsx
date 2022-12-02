@@ -7,7 +7,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { CommandBar } from "../components/CommandBar";
 import { DetailSection } from "../components/Detail";
-import { ExternalLink } from "../components/ExternalLink";
 import { Footer } from "../components/Footer";
 import { Head } from "../components/Head";
 
