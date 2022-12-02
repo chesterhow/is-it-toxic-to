@@ -18,7 +18,7 @@ body {
 }
 
 body > #__next {
-  @apply bg-neutral-50 h-full w-full overflow-y-auto;
+  @apply h-full w-full overflow-y-auto bg-gradient-to-br from-neutral-50 to-lime-50;
 }
 
 h1 {
