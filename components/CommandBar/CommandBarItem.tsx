@@ -2,7 +2,7 @@ import { Command } from "cmdk";
 import { useRouter } from "next/router";
 
 import { ANIMAL_EMOJI_MAP } from "../../constants";
-import { getPlantKey } from "../../utils/getPlantKey";
+import { encodePlantKey, getPlantKey } from "../../utils/getPlantKey";
 
 type CommandBarItemProps = {
   plant: Plant;
@@ -11,12 +11,18 @@ type CommandBarItemProps = {
 export function CommandBarItem({ plant }: CommandBarItemProps) {
   const router = useRouter();
 
-  function handleSelect(value: string) {
-    router.push({
-      query: {
-        plant: encodeURI(value),
+  function handleSelect(plantKey: string) {
+    const encodedPlantKey = encodePlantKey(plantKey);
+
+    // Leads back to home page using query param + masked pathname.
+    router.push(
+      {
+        pathname: "/",
+        query: { plant: encodedPlantKey },
       },
-    });
+      `/plants/${encodedPlantKey}`,
+      { shallow: true }
+    );
   }
 
   return (

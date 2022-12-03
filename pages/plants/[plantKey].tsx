@@ -1,60 +1,39 @@
 import classNames from "classnames";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import keyBy from "lodash/keyBy";
+import { GetStaticPropsContext } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
-import { CommandBar } from "../components/CommandBar";
-import { DetailSection } from "../components/Detail";
-import { Footer } from "../components/Footer";
-import { Head } from "../components/Head";
-import { decodePlantKey, getPlantKey } from "../utils/getPlantKey";
+import { CommandBar } from "../../components/CommandBar";
+import { DetailSection } from "../../components/Detail";
+import { Footer } from "../../components/Footer";
+import { Head } from "../../components/Head";
+import { decodePlantKey, getPlantKey } from "../../utils/getPlantKey";
 
-type HomePageProps = {
+type PlantsPageProps = {
+  plant: Plant;
   plantsMap: Record<string, Plant>;
 };
 
-export default function Home({ plantsMap }: HomePageProps) {
+export default function PlantsPage({ plant, plantsMap }: PlantsPageProps) {
   const router = useRouter();
   const detailRef = useRef<HTMLElement | null>(null);
 
   const plants = useMemo(() => Object.values(plantsMap), [plantsMap]);
-  const [activePlant, setActivePlant] = useState<Plant | null>(null);
 
-  // Update activePlant on query params change.
+  // Scroll detail into view.
   useEffect(() => {
-    // Guard: No query params.
-    if (typeof router.query.plant !== "string") {
-      setActivePlant(null);
-      return;
-    }
-
-    const plantKey = decodePlantKey(router.query.plant);
-    const newActivePlant = plantsMap[plantKey];
-
-    // Guard: Invalid plant in query params.
-    if (newActivePlant === undefined) {
-      setActivePlant(null);
-      return;
-    }
-
-    setActivePlant(newActivePlant);
-  }, [plantsMap, router.query]);
-
-  // Scroll detail into view on activePlant change.
-  useEffect(() => {
-    if (activePlant !== null) {
-      detailRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [activePlant]);
+    detailRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, []);
 
   return (
     <>
-      <Head title={activePlant?.name} />
+      <Head title={plant.name} />
 
       <div className="flex h-auto w-full flex-col items-center gap-20 p-4 sm:p-10 xl:h-screen">
         <motion.div
@@ -83,18 +62,14 @@ export default function Home({ plantsMap }: HomePageProps) {
                 Is It Toxic To?
               </motion.h1>
             </Link>
-            <CommandBar plants={plants} deemphasise={activePlant !== null} />
+            <CommandBar plants={plants} deemphasise={true} />
           </div>
 
-          <AnimatePresence>
-            {activePlant !== null && (
-              <DetailSection
-                ref={detailRef}
-                activePlant={activePlant}
-                clearActivePlant={() => setActivePlant(null)}
-              />
-            )}
-          </AnimatePresence>
+          <DetailSection
+            ref={detailRef}
+            activePlant={plant}
+            clearActivePlant={() => router.push("/")}
+          />
         </motion.div>
 
         <Footer />
@@ -103,15 +78,37 @@ export default function Home({ plantsMap }: HomePageProps) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context: GetStaticPropsContext) {
   const res = await fetch(
     "https://fourthclasshonours.github.io/toxic-plant-list-scraper/toxicPlants.json"
   );
   const plants = await res.json();
   const plantsMap = keyBy(plants, (plant: Plant) => getPlantKey(plant));
 
+  const plantKey = context.params?.plantKey;
+
+  // Guard: Invalid plant key.
+  if (typeof plantKey !== "string") {
+    return {
+      notFound: true,
+    };
+  }
+
+  const plant = plantsMap[decodePlantKey(plantKey)];
+
+  // Guard: No matching plant found.
+  if (plant === undefined) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
-    props: { plantsMap },
+    props: { plant, plantsMap },
     revalidate: 86400, // Revalidate once a day
   };
+}
+
+export async function getStaticPaths() {
+  return { paths: [], fallback: "blocking" };
 }
