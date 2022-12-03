@@ -55,20 +55,20 @@ export default function Home({ plantsMap }: HomePageProps) {
     <>
       <Head title={activePlant?.name} />
 
-      <div className="h-auto xl:h-screen flex flex-col items-center p-4 sm:p-10 w-full gap-20">
+      <div className="flex h-auto w-full flex-col items-center gap-20 p-4 sm:p-10 xl:h-screen">
         <motion.div
           transition={{ duration: 0.5 }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className={classNames(
-            "grow flex gap-10 justify-center items-center max-w-screen-2xl",
+            "flex max-w-screen-2xl grow items-center justify-center gap-10",
             // Layout
             "flex-col",
             // Layout: desktop
             "xl:flex-row"
           )}
         >
-          <div className="min-w-fit flex flex-col gap-y-4 m-auto">
+          <div className="m-auto flex min-w-fit flex-col gap-y-4">
             {/* HACK: having a empty element here prevents the emoji from being cut-off on Chrome. */}
             <span />
             <Link href="/">
@@ -76,7 +76,7 @@ export default function Home({ plantsMap }: HomePageProps) {
                 transition={{ duration: 0.5 }}
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
-                className="text-center cursor-pointer z-10 select-none overflow-visible text-[4rem] sm:text-[5rem] md:text-[6rem]"
+                className="z-10 cursor-pointer select-none overflow-visible text-center text-[4rem] sm:text-[5rem] md:text-[6rem]"
               >
                 🪴 <br className="md:hidden" />
                 Is It Toxic To?

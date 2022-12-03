@@ -10,7 +10,7 @@ export function Button(props: ButtonProps) {
     <button
       onClick={props.onClick}
       className={classNames(
-        "bg-neutral-200 h-6 w-6 rounded-lg transition-[background-color,box-shadow]",
+        "h-6 w-6 rounded-lg bg-neutral-200 transition-[background-color,box-shadow]",
         // State: hover
         "hover:bg-neutral-300",
         // State: focus

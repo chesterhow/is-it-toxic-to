@@ -12,7 +12,7 @@ export function ExternalLink(props: ExternalLinkProps) {
       target="_blank"
       rel="noopener noreferrer"
       className={classNames(
-        "rounded-sm text-neutral-500 after:content-['_↗'] transition-[color,box-shadow]",
+        "rounded-sm text-neutral-500 transition-[color,box-shadow] after:content-['_↗']",
         // State: hover
         "hover:text-black",
         // State: focus

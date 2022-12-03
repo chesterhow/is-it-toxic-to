@@ -8,7 +8,7 @@ export function Footer() {
       transition={{ delay: 0.5, duration: 0.5 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col sm:flex-row gap-4 sm:gap-6 pb-10 sm:pb-0 text-md text-neutral-400 select-none items-center"
+      className="text-md flex select-none flex-col items-center gap-4 pb-10 text-neutral-400 sm:flex-row sm:gap-6 sm:pb-0"
     >
       <span>
         Planted 🌱 by{" "}

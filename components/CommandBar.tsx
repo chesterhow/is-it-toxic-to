@@ -28,8 +28,8 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
     <Command
       className={classNames(
         "flex flex-col items-stretch",
-        "bg-white rounded-xl border-[1px] border-neutral-100",
-        "overflow-hidden z-20",
+        "rounded-xl border-[1px] border-neutral-100 bg-white",
+        "z-20 overflow-hidden",
         "transition-[box-shadow,border] duration-500",
         deemphasise ? "shadow-md" : "shadow-2xl",
         // State: focus
@@ -38,23 +38,26 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
     >
       <Command.Input
         ref={inputRef}
-        className="p-4 text-xl font-light border-b-[1px] border-neutral-100 tracking-tight placeholder:text-neutral-400"
+        className="border-b-[1px] border-neutral-100 p-4 text-xl font-light tracking-tight placeholder:text-neutral-400"
         placeholder="Search for toxic plants..."
         autoFocus
       />
-      <Command.List className="p-2 overflow-y-auto h-[50vh] max-h-96">
+      <Command.List className="h-[50vh] max-h-96 overflow-y-auto p-2">
         {plants.map((plant) => (
           <Command.Item
             key={plant.name}
             value={[plant.name, plant.scientificName].join(" ")}
-            className="group px-4 py-2 aria-selected:bg-neutral-100 rounded-md flex cursor-pointer"
+            className="group flex cursor-pointer justify-between rounded-md px-4 py-2 aria-selected:bg-neutral-100"
             onSelect={handleSelect}
           >
-            <span className="grow sm:grow-0">{plant.name}</span>&nbsp;
-            <span className="pl-2 text-neutral-400 grow hidden sm:block">
-              {plant.scientificName}
-            </span>
-            <span className="bg-red-200 rounded-full px-1 hidden xs:block">
+            <div className="flex gap-x-2">
+              <span className="grow truncate">{plant.name}</span>
+              &nbsp;
+              <span className="hidden text-neutral-400 sm:block">
+                {plant.scientificName}
+              </span>
+            </div>
+            <span className="whitespace-nowrap rounded-full bg-red-200 px-1">
               {plant.toxicTo.map((animal) => ANIMAL_EMOJI_MAP[animal])}
             </span>
           </Command.Item>
