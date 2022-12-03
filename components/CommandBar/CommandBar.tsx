@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { Command } from "cmdk";
 import { useEffect, useRef } from "react";
 
-import { getPlantKey } from "../../utils/getPlantKey";
+import { getPlantKey } from "../../utils/plant-key-utils";
 import { CommandBarEmpty } from "./CommandBarEmpty";
 import { CommandBarItem } from "./CommandBarItem";
 

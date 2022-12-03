@@ -2,7 +2,7 @@ import { Command } from "cmdk";
 import { useRouter } from "next/router";
 
 import { ANIMAL_EMOJI_MAP } from "../../constants";
-import { encodePlantKey, getPlantKey } from "../../utils/getPlantKey";
+import { encodePlantKey, getPlantKey } from "../../utils/plant-key-utils";
 
 type CommandBarItemProps = {
   plant: Plant;

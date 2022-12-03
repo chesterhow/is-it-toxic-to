@@ -1,7 +1,3 @@
-export function getPlantKey(plant: Plant): string {
-  return `${plant.name} ${plant.scientificName}`.toLowerCase();
-}
-
 export function encodePlantKey(plantKey: string): string {
   return encodeURI(plantKey).replace(/%20/g, "+");
 }

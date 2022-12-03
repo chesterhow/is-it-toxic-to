@@ -10,7 +10,7 @@ import { CommandBar } from "../../components/CommandBar";
 import { DetailSection } from "../../components/Detail";
 import { Footer } from "../../components/Footer";
 import { Head } from "../../components/Head";
-import { decodePlantKey, getPlantKey } from "../../utils/getPlantKey";
+import { decodePlantKey, getPlantKey } from "../../utils/plant-key-utils";
 
 type PlantsPageProps = {
   plant: Plant;
