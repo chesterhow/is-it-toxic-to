@@ -9,6 +9,7 @@ import { CommandBar } from "../components/CommandBar";
 import { DetailSection } from "../components/Detail";
 import { Footer } from "../components/Footer";
 import { Head } from "../components/Head";
+import { getPlantKey } from "../utils/getPlantKey";
 
 type HomePageProps = {
   plantsMap: Record<string, Plant>;
@@ -107,9 +108,7 @@ export async function getStaticProps() {
     "https://fourthclasshonours.github.io/toxic-plant-list-scraper/toxicPlants.json"
   );
   const plants = await res.json();
-  const plantsMap = keyBy(plants, (plant: Plant) =>
-    [plant.name, plant.scientificName].join(" ").toLowerCase()
-  );
+  const plantsMap = keyBy(plants, (plant: Plant) => getPlantKey(plant));
 
   return {
     props: { plantsMap },

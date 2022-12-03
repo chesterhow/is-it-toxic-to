@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { Command } from "cmdk";
-import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 
 import { getPlantKey } from "../../utils/getPlantKey";
@@ -13,7 +12,6 @@ type CommandBarProps = {
 };
 
 export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => inputRef.current?.focus(), []);
