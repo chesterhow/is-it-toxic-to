@@ -27,7 +27,7 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
   return (
     <Command
       className={classNames(
-        "flex flex-col items-stretch",
+        "flex max-w-[90vw] flex-col items-stretch",
         "rounded-xl border-[1px] border-neutral-100 bg-white",
         "z-20 overflow-hidden",
         "transition-[box-shadow,border] duration-500",
@@ -47,13 +47,12 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
           <Command.Item
             key={plant.name}
             value={[plant.name, plant.scientificName].join(" ")}
-            className="group flex cursor-pointer justify-between rounded-md px-4 py-2 aria-selected:bg-neutral-100"
+            className="group flex cursor-pointer items-center justify-between gap-x-3 rounded-md px-4 py-2 aria-selected:bg-neutral-100"
             onSelect={handleSelect}
           >
-            <div className="flex gap-x-2">
-              <span className="grow truncate">{plant.name}</span>
-              &nbsp;
-              <span className="hidden text-neutral-400 sm:block">
+            <div className="flex min-w-0 grow flex-col gap-x-3 sm:flex-row">
+              <span className="truncate">{plant.name}</span>
+              <span className="grow truncate text-neutral-400 sm:block">
                 {plant.scientificName}
               </span>
             </div>

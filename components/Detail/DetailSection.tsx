@@ -35,11 +35,11 @@ function _DetailSection(
       ref={ref}
       key="detail"
       className={classNames(
-        "rounded-2xl bg-white p-10 shadow-2xl",
+        "rounded-2xl bg-white shadow-2xl",
         // Layout
-        "w-full max-w-screen-md",
+        "w-full max-w-screen-md p-6 sm:p-8",
         // Layout: desktop
-        "xl:max-h-full xl:w-1/2 xl:overflow-y-auto"
+        "md:p-10 xl:max-h-full xl:w-1/2 xl:overflow-y-auto"
       )}
     >
       {/* Navigation */}
@@ -49,8 +49,10 @@ function _DetailSection(
       </div>
 
       {/* Header */}
-      <h2 className="mt-4 mb-2">{activePlant.name}</h2>
-      <h3 className="pb-8 text-2xl font-light italic tracking-tight text-neutral-500 md:pb-10">
+      <h2 className="mt-4 mb-2 text-[3rem] sm:text-[3.75rem] md:text-[4.5rem]">
+        {activePlant.name}
+      </h2>
+      <h3 className="pb-6 text-xl font-light italic tracking-tight text-neutral-500 md:pb-10 md:text-2xl">
         {activePlant.scientificName}
       </h3>
 

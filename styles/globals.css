@@ -30,7 +30,6 @@ h1 {
 h2 {
   @apply font-serif leading-tight;
   font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 300;
-  font-size: 4.5rem;
   letter-spacing: -0.1rem;
 }
 
