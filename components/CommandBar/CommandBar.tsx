@@ -3,7 +3,9 @@ import { Command } from "cmdk";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 
-import { ANIMAL_EMOJI_MAP } from "../constants";
+import { getPlantKey } from "../../utils/getPlantKey";
+import { CommandBarEmpty } from "./CommandBarEmpty";
+import { CommandBarItem } from "./CommandBarItem";
 
 type CommandBarProps = {
   plants: Plant[];
@@ -15,14 +17,6 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => inputRef.current?.focus(), []);
-
-  function handleSelect(value: string) {
-    router.push({
-      query: {
-        plant: encodeURI(value),
-      },
-    });
-  }
 
   return (
     <Command
@@ -43,23 +37,9 @@ export function CommandBar({ plants, deemphasise = false }: CommandBarProps) {
         autoFocus
       />
       <Command.List className="h-[50vh] max-h-96 overflow-y-auto p-2">
+        <CommandBarEmpty />
         {plants.map((plant) => (
-          <Command.Item
-            key={plant.name}
-            value={[plant.name, plant.scientificName].join(" ")}
-            className="group flex cursor-pointer items-center justify-between gap-x-3 rounded-md px-4 py-2 aria-selected:bg-neutral-100"
-            onSelect={handleSelect}
-          >
-            <div className="flex min-w-0 grow flex-col gap-x-3 sm:flex-row">
-              <span className="truncate">{plant.name}</span>
-              <span className="grow truncate text-neutral-400 sm:block">
-                {plant.scientificName}
-              </span>
-            </div>
-            <span className="whitespace-nowrap rounded-full bg-red-200 px-1">
-              {plant.toxicTo.map((animal) => ANIMAL_EMOJI_MAP[animal])}
-            </span>
-          </Command.Item>
+          <CommandBarItem key={getPlantKey(plant)} plant={plant} />
         ))}
       </Command.List>
     </Command>
