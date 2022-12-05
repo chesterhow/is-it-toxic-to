@@ -33,7 +33,9 @@ export function Head({
       />
       <meta
         property="og:image"
-        content="https://iitt.vercel.app/og.png"
+        content={`${
+          process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""
+        }/og.png`}
         key="og:image"
       />
       <meta property="og:type" content="website" key="og:type" />
@@ -65,7 +67,9 @@ export function Head({
       />
       <meta
         name="twitter:image"
-        content="https://iitt.vercel.app/og.png"
+        content={`${
+          process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""
+        }/og.png`}
         key="twitter:image"
       />
       <meta
@@ -108,6 +112,9 @@ export function Head({
         key="msapplication-TileColor"
       />
       <meta name="theme-color" content="#ffffff" key="theme-color" />
+
+      {/* others */}
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     </NextHead>
   );
 }
