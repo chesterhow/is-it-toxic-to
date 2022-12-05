@@ -1,6 +1,6 @@
 import keyBy from "lodash/keyBy";
 
-import { getPlantKey } from "../utils/plant-key-utils";
+import { getPlantKey } from "./plant-key-utils";
 
 export async function fetchPlantsMap(): Promise<Record<string, Plant>> {
   const res = await fetch(

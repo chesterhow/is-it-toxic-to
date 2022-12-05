@@ -6,8 +6,8 @@ import { DetailSection } from "../components/Detail";
 import { Head } from "../components/Head";
 import { ContentLayout } from "../components/layouts/ContentLayout";
 import { LogoAndCombobox } from "../components/LogoAndCombobox";
+import { fetchPlantsMap } from "../utils/fetchPlantsMap";
 import { decodePlantKey } from "../utils/plant-key-utils";
-import { fetchPlantsMap } from "./fetchPlantsMap";
 
 type HomePageProps = {
   plantsMap: Record<string, Plant>;
