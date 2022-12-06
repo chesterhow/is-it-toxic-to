@@ -7,6 +7,7 @@ import { Head } from "../../components/Head";
 import { ContentLayout } from "../../components/layouts/ContentLayout";
 import { LogoAndCombobox } from "../../components/LogoAndCombobox";
 import { fetchPlantsMap } from "../../utils/fetchPlantsMap";
+import { getMetaDescription } from "../../utils/getMetaDescription";
 import { decodePlantKey } from "../../utils/plant-key-utils";
 
 type PlantsPageProps = {
@@ -28,7 +29,7 @@ export default function PlantsPage({ plant, plantsMap }: PlantsPageProps) {
 
   return (
     <>
-      <Head title={plant.name} />
+      <Head title={plant.name} description={getMetaDescription(plant)} />
 
       <ContentLayout>
         <LogoAndCombobox plantsMap={plantsMap} deemphasise={true} />

@@ -7,6 +7,7 @@ import { Head } from "../components/Head";
 import { ContentLayout } from "../components/layouts/ContentLayout";
 import { LogoAndCombobox } from "../components/LogoAndCombobox";
 import { fetchPlantsMap } from "../utils/fetchPlantsMap";
+import { getMetaDescription } from "../utils/getMetaDescription";
 import { decodePlantKey } from "../utils/plant-key-utils";
 
 type HomePageProps = {
@@ -51,7 +52,12 @@ export default function Home({ plantsMap }: HomePageProps) {
 
   return (
     <>
-      <Head title={activePlant?.name} />
+      <Head
+        title={activePlant?.name}
+        description={
+          activePlant !== null ? getMetaDescription(activePlant) : undefined
+        }
+      />
 
       <ContentLayout>
         <LogoAndCombobox
