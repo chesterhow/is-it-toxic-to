@@ -6,7 +6,7 @@ export function CommandBarEmpty() {
       <span className="text-3xl">🥀</span>
       <h3 className="text-sm text-neutral-500">Can&apos;t find your plant?</h3>
       <p className="text-sm text-neutral-400">
-        Try searching for its scientic name instead.
+        Try searching for its scientific name instead.
       </p>
     </Command.Empty>
   );
